@@ -54,51 +54,50 @@
     <div class="output" id="output"></div>
   </div>
   <script>
-    function analyzeInput() {
-      const input = document.getElementById('input').value.toLowerCase();
-      const output = document.getElementById('output');
+  function analyzeInput() {
+    const input = document.getElementById('input').value.toLowerCase();
+    const output = document.getElementById('output');
 
-      if (!input.trim()) {
-        output.innerHTML = '<p>Please paste your assessment findings above.</p>';
-        return;
-      }
-
-      let findings = [];
-
-      // Breathing & ventilation
-      if (input.includes('rr 28') || input.includes('crackles') || input.includes('rhonchi')) {
-        findings.push("• Breathing: Signs of possible ventilation issue. Recommend repositioning, incentive spirometry, cough/deep breathe before oxygen.");
-      }
-      if (input.includes('o2 sat') && parseFloat(input.match(/o2 sat[\\s:=]*([0-9]+)/)?.[1]) < 94) {
-        findings.push("• Breathing: Low O2 sat noted. If effortful breathing present, consider high-flow oxygen device (Venturi, CPAP). Else, start with nursing actions.");
-      }
-
-      // Circulation
-      if (input.includes('bp 90/60') || input.includes('fatigue') || input.includes('lethargy')) {
-        findings.push("• Circulation: Possible hypoperfusion state due to possible pathogen/infection. Recommend neuro check (BEFAST + uvula), and consider IV fluids after reassessment.");
-      }
-
-      // Pain
-      if (input.includes('pain')) {
-        findings.push("• Pain: Document pain location and scale. Hold narcotics if SBP <90 or RR <10.");
-      }
-
-      // Psych/Safety
-      if (input.includes('confused') || input.includes('lethargic')) {
-        findings.push("• Psychiatric/Safety: Assess orientation, implement fall precautions, reassess vitals frequently.");
-      }
-
-      if (findings.length === 0) {
-        findings.push("• Unable to determine priority from the data provided. Please include vitals, assessment, and concerns.");
-      }
-
-      output.innerHTML = `
-<strong>ABCPP Coaching:</strong>\n\n${findings.join('\n\n')}\n\nWhat’s your next move?\nIs your priority based on a symptom or a system?\nIs this a safety issue, or something else?
-      `;
+    if (!input.trim()) {
+      output.innerHTML = '<p>Please paste your assessment findings above.</p>';
+      return;
     }
-  </script>
-</body>
-</html>
+
+    let findings = [];
+
+    // Breathing & ventilation
+    if (input.includes('rr 28') || input.includes('crackles') || input.includes('rhonchi')) {
+      findings.push("• Breathing: Signs of possible ventilation issue. Recommend repositioning, incentive spirometry, cough/deep breathe before oxygen.");
+    }
+    if (input.includes('o2 sat') && parseFloat(input.match(/o2 sat[\\s:=]*([0-9]+)/)?.[1]) < 94) {
+      findings.push("• Breathing: Low O2 sat noted. If effortful breathing present, consider high-flow oxygen device (Venturi, CPAP). Else, start with nursing actions.");
+    }
+
+    // Circulation
+    if (input.includes('bp 90/60') || input.includes('fatigue') || input.includes('lethargy')) {
+      findings.push("• Circulation: Possible hypoperfusion state due to possible pathogen/infection. Recommend neuro check (BEFAST + uvula), and consider IV fluids after reassessment.");
+    }
+
+    // Pain
+    if (input.includes('pain')) {
+      findings.push("• Pain: Document pain location and scale. Hold narcotics if SBP <90 or RR <10.");
+    }
+
+    // Psych/Safety
+    if (input.includes('confused') || input.includes('lethargic')) {
+      findings.push("• Psychiatric/Safety: Assess orientation, implement fall precautions, reassess vitals frequently.");
+    }
+
+    if (findings.length === 0) {
+      findings.push("• Unable to determine priority from the data provided. Please include vitals, assessment, and concerns.");
+    }
+
+    output.innerHTML = `
+<strong>ABCPP Coaching:</strong>\n\n${findings.join('\n\n')}\n\nWhat’s your next move?\nIs your priority based on a symptom or a system?\nIs this a safety issue, or something else?
+    `;
+  }
+</script>
+
 
 
 
